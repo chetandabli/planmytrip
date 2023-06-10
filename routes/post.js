@@ -30,6 +30,12 @@ postRouter.delete("/:id", async(req, res)=>{
 })
 postRouter.get("/", async(req, res)=>{
     const {destination, sort, order} = req.query;
+
+    if(order == "desc"){
+        order = -1
+    }else if(order == "asc"){
+        order = 1
+    }
     try {
         if(destination && sort){
             let data = await PostModel.find({"destination": destination}).sort({"budget_per_person": order});
