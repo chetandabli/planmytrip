@@ -2,8 +2,10 @@ const express = require("express");
 const app = express();
 require('dotenv').config()
 const { connection } = require("./configs/db");
-const { postRouter } = require("./routes/post")
+const { postRouter } = require("./routes/post");
+var cors = require('cors');
 
+app.use(cors())
 app.use(express.json());
 
 app.get("/", (req, res)=>{
